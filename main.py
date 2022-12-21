@@ -3,10 +3,9 @@
 
 def main(pk_=1):
     while True:
-        yield
         dict_ = {
             "model": "smt",
-            "pk": "pk",
+            "pk": pk_,
             "friends": {
                 "title": "smt",
                 "year": "smt",
@@ -15,15 +14,17 @@ def main(pk_=1):
                 "rating": 5,
                 "price": 123456.0,
                 "author": [
+                    "test_author_1",
+                    "test_author_2"
                 ]
             }
-
         }
-    pk_ += 1
+        yield dict_
+        pk_ += 1
 
 
 if __name__ == "__main__":
     pk_ = main(5)
 
-for _ in range(1):
-    print(next(main()))
+for _ in range(2):
+    print(next(pk_))

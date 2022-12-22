@@ -1,4 +1,10 @@
 # from conf import MODEL
+import random
+import json
+from title import title_
+from faker import Faker
+
+fake = Faker()
 
 
 def main(pk_=1):
@@ -6,16 +12,16 @@ def main(pk_=1):
         dict_ = {
             "model": "smt",
             "pk": pk_,
-            "friends": {
-                "title": "smt",
-                "year": "smt",
-                "pages": "smt",
-                "isbn13": "smt",
-                "rating": 5,
-                "price": 123456.0,
+            "fields": {
+                "title": title_(),
+                "year": random.randint(1870, 2022),
+                "pages": random.randint(50, 1000),
+                "isbn13": fake.isbn13(),
+                "rating": round(random.uniform(1, 5), 1),
+                "price": round(random.uniform(100, 5000), 2),
                 "author": [
-                    "test_author_1",
-                    "test_author_2"
+                    fake.name(),
+                    fake.name()
                 ]
             }
         }
@@ -26,5 +32,5 @@ def main(pk_=1):
 if __name__ == "__main__":
     pk_ = main(5)
 
-for _ in range(2):
+for _ in range(1):
     print(next(pk_))
